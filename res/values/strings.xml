@@ -3,4 +3,6 @@
     <string name="app_name">ToDo</string>
     <string name="button">Add</string>
     <string name="about">About</string>
+    <string name="help">Help</string>
 </resources>
+

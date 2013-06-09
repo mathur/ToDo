@@ -115,7 +115,11 @@ public class MainActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.about:
                 // if about is pressed, then open the dialog box
-                showDialog(11);
+                showDialog(1);
+                return true;
+            case R.id.help:
+                // if help is pressed, then open the dialog box
+                showDialog(2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -130,7 +134,7 @@ public class MainActivity extends Activity {
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
-            case 11:
+            case 1:
                 // Create our About Dialog
                 TextView aboutMsg  = new TextView(this);
                 aboutMsg.setMovementMethod(LinkMovementMethod.getInstance());
@@ -150,6 +154,26 @@ public class MainActivity extends Activity {
                                 });
 
                 return builder.create();
+            case 2:
+                // Create our Help Dialog
+                TextView helpMsg  = new TextView(this);
+                helpMsg.setMovementMethod(LinkMovementMethod.getInstance());
+                helpMsg.setPadding(30, 30, 30, 30);
+                helpMsg.setText(Html.fromHtml("<font color='black'><small>The main app view displays all the ToDo items. To add a new item, simple type the item into the enter text field and then click the Add Item button.<br>To mark a item as done, check the box next to its name.<br><br>Notes:<br>1) Items that are checked upon app close will be removed<br>2) Items will by default sort by being done or not<br>3) Due date support is coming soon!</small></font>"));
+
+                Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setView(helpMsg)
+                        .setTitle(Html.fromHtml("<b><font color='black'>Help</font></b>"))
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                return builder2.create();
         }
 
         return super.onCreateDialog(id);
@@ -226,3 +250,4 @@ public class MainActivity extends Activity {
 	}
 
 }
+
